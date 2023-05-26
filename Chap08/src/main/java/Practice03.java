@@ -4,7 +4,7 @@ import java.util.*;
 public class Practice03 {
     public static void main(String[] args) {
         Scanner sc;
-        String fileName = "C:\\Users\\chdms\\Desktop\\test2.txt";
+        String fileName = "C:\\Users\\**\\Desktop\\test2.txt";
         try {
             sc = new Scanner(new FileReader(fileName));
 

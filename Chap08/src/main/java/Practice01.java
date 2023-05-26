@@ -5,7 +5,7 @@ public class Practice01 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         FileWriter fout;
-        String fileName = "C:\\Users\\chdms\\Desktop\\test.txt";
+        String fileName = "C:\\Users\\**\\Desktop\\test.txt";
         System.out.println("전화번호 입력 프로그램입니다.");
 
         try {
