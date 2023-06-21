@@ -1,0 +1,13 @@
+package Practice07;
+
+public class Circle {
+    int width, height;
+    int x, y;
+
+    public Circle(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+}
