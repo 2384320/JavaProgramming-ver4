@@ -1,4 +1,4 @@
-package Practice06;
+package Practice07;
 
 import javax.swing.*;
 import java.awt.*;

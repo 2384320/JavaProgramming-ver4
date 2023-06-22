@@ -1,4 +1,4 @@
-package Practice07;
+package Practice08;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,16 +7,16 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 public class DrawCircleEventFrame extends JFrame {
-    private int startX, startY, disX, disY, width, height;
+    private int startX, startY, disX, disY;
     private Vector<Circle> v;
     public DrawCircleEventFrame() {
         setTitle("마우스로 원 그리기");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MyPanel panel = new MyPanel();
-
         startX = 0;
         startY = 0;
         v = new Vector<>();
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -30,13 +30,9 @@ public class DrawCircleEventFrame extends JFrame {
                 super.mouseReleased(e);
                 disX = Math.abs(e.getX() - startX);
                 disY = Math.abs(e.getY() - startY);
-                v.add(new Circle(x, y, width, height));
+                int r = (int) Math.sqrt(disX * disX + disY * disY);
+                v.add(new Circle(startX - r, startY - r, r * 2));
                 repaint();
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                super.mouseDragged(e);
             }
         });
         setContentPane(panel);
@@ -45,10 +41,16 @@ public class DrawCircleEventFrame extends JFrame {
     }
 
     class MyPanel extends JPanel {
+        public MyPanel() {
+            setFocusable(true);
+            requestFocus();
+        }
+
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             for (int i = 0; i < v.size(); i++) {
-                g.drawOval(v.get(i).x, v.get(i).y, v.get(i).width, v.get(i).height);
+                System.out.println(v.get(i));
+                g.drawOval(v.get(i).x, v.get(i).y, v.get(i).dist, v.get(i).dist);
             }
         }
     }
