@@ -4,21 +4,35 @@ import javax.swing.*;
 
 public class TargetThread extends Thread {
     int x = 0;
-    JLabel jLabel;
-    TargetThread(JLabel jLabel) {
-        this.jLabel = jLabel;
+    JComponent target;
+    GamePanel gamePanel;
+
+    TargetThread(JComponent target, GamePanel gamePanel) {
+        this.target = target;
+        this.gamePanel = gamePanel;
+        target.setLocation(0, 0);
+        target.getParent().repaint();
     }
 
     @Override
     public void run() {
         while (true) {
-            jLabel.setLocation(jLabel.getX() + 5, 0);
+            int x = target.getX() + 5;
+            int y = target.getY();
+            if (x > gamePanel.getWidth()) target.setLocation(0, 0);
+            else target.setLocation(x, y);
+
+            target.getParent().repaint();
             try {
-                Thread.sleep(20);
-            } catch (Exception e) {
-                e.printStackTrace();
+                sleep(20);
+            } catch (InterruptedException e) {
+                target.setLocation(0, 0);
+                target.getParent().repaint();
+                try {
+                    sleep(500);
+                } catch (InterruptedException e2) {
+                }
             }
-            if (jLabel.getX() > )
         }
     }
 }
